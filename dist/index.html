@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noindex, nofollow">
+        <title>RAEvents Tools</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" href="app.css">
+    </head>
+
+    <body>
+        <main>
+            <div id="tabs">
+                <div id="tabSubmission" class="selected" data-target="users">Users</div>
+                <div id="tabOutput" data-target="output">Output</div>
+            </div>
+            <div id="content">
+                <textarea id="users"></textarea>
+                <div id="output"></div>
+            </div>
+            <div id="options">
+                <button id="clear">Clear</button>
+                <button id="resetAuth">Reset Auth</button>
+            </div>
+            <button id="verify">Verify</button>
+        </main>
+        <template id="authModalTemplate">
+            <div class="authModal">
+                <div>
+                    <label>Username:</label>
+                    <input name="username" type="text"></input>
+                    <label>API Key:</label>
+                    <input name="apikey" type="password"></input>
+                    <label>
+                        <input name="saveinfo" type="checkbox"></input>
+                        Save Info
+                    </label>
+                    <button>Ok</button>
+                </div>
+            </div>
+        </template>
+        <script type="module" src="app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,285 @@
+* {
+    font-family: monospace;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    font-size: 12px;
+}
+
+body {
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+}
+
+main {
+    display: grid;
+    grid-template: auto / 6em;
+    gap: 1rem;
+    box-shadow: 4px 4px 16px black;
+}
+
+main, div.authModal > div {
+    background-color: #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+#content {
+    height: 40em;
+    width: 30em;
+    grid-column: 2;
+    grid-row: span 2;
+    z-index: 1;
+    font-size: 1rem;
+    display: grid;
+}
+
+textarea {
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: scroll;
+    font-size: inherit;
+}
+
+main label, div.authModal label {
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+#options label {
+    font-size: 1rem;
+}
+
+#tabs {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5em;
+    margin-right: calc(-1rem - 2px);
+    z-index: 0;
+    grid-column: 1;
+}
+
+#tabs > div {
+    padding: 0.5em;
+    border-radius: 2px;
+    border: 1px solid #777;
+    margin-top: -1px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#tabs > .selected {
+    background-color: #eee;
+    z-index: 1;
+}
+
+#tabs > :not(.selected) {
+    background-color: #bbb;
+    margin-left: 0.5em;
+}
+
+#options {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    grid-row: 2 / span 2;
+}
+
+button#clear {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+button#verify {
+    grid-column: 2;
+}
+
+button#resetAuth {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#output {
+    display: none;
+    background-color: #eee;
+    border: 1px solid #777;
+    border-radius: 4px;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
+#output hr {
+    background-color: #777;
+    border: none;
+    height: 1px;
+    margin: 2px 0px;
+}
+
+#output h1 {
+    font-size: 1.25rem;
+}
+
+#output h1:not(:first-child) {
+    margin-top: 1rem;
+}
+
+#output div.game, #output div.achievement {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 32px;
+}
+
+#output div.game:hover, #output div.achievement:hover {
+    background-color: white;
+}
+
+#output a.title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: black;
+}
+
+#output a.title:hover {
+    text-decoration: underline;
+}
+
+#output div.icon {
+    width: 32px;
+    height: 32px;
+    background-color: #777;
+    overflow: hidden;
+}
+
+#output div.icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.timestamp {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #777;
+}
+
+div.status {
+    position: relative;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    padding-right: 10px;
+}
+
+div.status::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-top: 1px solid #777;
+    animation: 0.5s linear rotate infinite;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+div.status.success::after {
+    background-color: #6cd46c;
+}
+
+div.status.failure::after {
+    background-color: #ff4444;
+}
+
+div.status.success::after,
+div.status.failure::after {
+    content: "";
+    border: 1px solid #777;
+    animation: none;
+}
+
+div.status.success.mastered::after {
+    content: "";
+    background-color: gold;
+    animation: none;
+}
+
+div.authModal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+div.authModal > div {
+    display: grid;
+    grid-template: auto / auto auto;
+    gap: 1rem;
+}
+
+div.authModal > div > input[name="apikey"] {
+    min-width: 20rem;
+}
+
+div.progress {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+div.progress > span.spinner {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-top: 1px solid black;
+    border-radius: 50%;
+    animation: 0.5s linear rotate infinite;
+}
+
+
+#output div.user {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    margin: 0.5rem 0;
+}
+
+#output div.user img {
+    width: 32px;
+    height: 32px;
+}
+
+#output div.user a {
+    margin-left: 0.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+#output div.user a:hover {
+    text-decoration: underline;
+}

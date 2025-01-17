@@ -1,0 +1,20 @@
+{
+    "name": "tools",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node build.mjs dev",
+        "prod": "node build.mjs prod"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@retroachievements/api": "github:monkey-bug/retroachievements-api-js"
+    },
+    "devDependencies": {
+        "esbuild": "^0.24.0",
+        "esbuild-minify-templates": "^0.11.0"
+    }
+}
