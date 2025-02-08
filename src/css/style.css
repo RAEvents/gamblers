@@ -246,13 +246,8 @@ div.authModal > div > input[name="apikey"] {
     min-width: 20rem;
 }
 
-div.progress {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5rem 0;
-}
-
-div.progress > span.spinner {
+span.spinner {
+    margin: 0.5rem;
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
@@ -260,7 +255,6 @@ div.progress > span.spinner {
     border-radius: 50%;
     animation: 0.5s linear rotate infinite;
 }
-
 
 #output div.user {
     display: flex;
@@ -282,4 +276,45 @@ div.progress > span.spinner {
 
 #output div.user a:hover {
     text-decoration: underline;
+}
+
+#achievements {
+    background-color: #eee;
+    border: 1px solid #777;
+    border-radius: 4px;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
+#achievements > input[type="text"] {
+    width: 100%;
+}
+
+.copy {
+    opacity: 0;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+div.user:hover > .copy {
+    opacity: 1;
+}
+
+div#toast {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #eee;
+    border: 1px solid #777;
+    border-radius: 8px;
+    opacity: 0;
+    animation: fade 3s linear;
+    padding: 1rem;
+}
+
+@keyframes fade {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
 }
