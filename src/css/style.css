@@ -295,6 +295,7 @@ span.spinner {
     font-size: 1.5rem;
     margin-left: 0.5rem;
     cursor: pointer;
+    user-select: none;
 }
 
 div.user:hover > .copy {
