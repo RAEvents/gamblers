@@ -91,7 +91,6 @@ document.getElementById("verify").addEventListener("click", async () => {
             offset: 0
         });
         await api.wait();
-        console.log(data);
         let n = data.unlocksCount - 500;
         const unlocks = data.unlocks;
         while (n > 0) {
@@ -100,7 +99,6 @@ document.getElementById("verify").addEventListener("click", async () => {
                 count: 500,
                 offset: unlocks.length,
             });
-            console.log(data);
             await api.wait();
             unlocks.push(...data.unlocks);
             n -= 500;
@@ -111,7 +109,6 @@ document.getElementById("verify").addEventListener("click", async () => {
         } else {
             gamblers = gamblers.filter(user => unlocks.map(u => u.user).includes(user));
         }
-        console.log(gamblers);
     }
 
     for (const user of gamblers) {
