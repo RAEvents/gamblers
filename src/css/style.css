@@ -122,6 +122,7 @@ button#resetAuth {
 
 #output h1 {
     font-size: 1.25rem;
+    display: inline-block;
 }
 
 #output h1:not(:first-child) {
@@ -291,11 +292,14 @@ span.spinner {
 }
 
 .copy {
-    opacity: 0;
     font-size: 1.5rem;
     margin-left: 0.5rem;
     cursor: pointer;
     user-select: none;
+}
+
+div.user > .copy {
+    opacity: 0;
 }
 
 div.user:hover > .copy {

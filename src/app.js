@@ -71,9 +71,13 @@ document.getElementById("verify").addEventListener("click", async () => {
     switchToTab("output");
     const output = document.getElementById("output")
     output.innerHTML = html`
-        <h1>Gamblers</h1><hr />
-        <span class="spinner"></span>
+        <h1>Gamblers</h1><span class="copy">📋</span>
+        <hr /><span class="spinner"></span>
     `;
+    output.querySelector("h1 ~ span.copy").addEventListener("click", () => {
+        navigator.clipboard.writeText(Array.from(output.querySelectorAll(".user > a")).map(e => e.innerText).join("\n"));
+        toast("Full list copied to clipboard");
+    });
 
     const spinner = output.querySelector(".spinner");
     let gamblers = [];
@@ -118,7 +122,6 @@ document.getElementById("verify").addEventListener("click", async () => {
             <a href=${`https://retroachievements.org/user/${user}`}>${user}</a>
             <span class="copy">📋</span>
         `;
-
         div.querySelector("span.copy").addEventListener("click", () => {
             navigator.clipboard.writeText(user);
             toast("Username copied to clipboard");
@@ -126,32 +129,6 @@ document.getElementById("verify").addEventListener("click", async () => {
         spinner.parentElement.append(div);
     }
     spinner.remove();
-
-    // let i = 0;
-    // for (const user of users) {
-    //     const result = await api.checkUser(auth, user);
-    //     if (result.untracked) {
-    //         untracked.push(result);
-    //     }
-    //     await api.wait();
-    //     amount.innerText = `${++i} / ${users.length}`;
-    // }
-    //
-    // if (untracked.length == 0) {
-    //     progress.innerHTML = `No untracked users!`;
-    //     return;
-    // }
-    //
-    // for (const user of untracked) {
-    //     const div = document.createElement("div");
-    //     div.className = "user";
-    //     div.innerHTML = html`
-    //         <img src=${`https://retroachievements.org${user.userPic}`}></img>
-    //         <a href=${`https://retroachievements.org/user/${user.username}`}>${user.username}</span>
-    //     `;
-    //     progress.parentElement.append(div);
-    // }
-    // progress.remove();
 });
 
 document.getElementById("clear").addEventListener("click", () => {
