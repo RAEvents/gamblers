@@ -80,13 +80,13 @@ document.getElementById("verify").addEventListener("click", async () => {
     });
 
     const spinner = output.querySelector(".spinner");
-    let gamblers = [];
-
     const achievementElem = document.getElementById("achievements");
     const achievements = Array.from(achievementElem.querySelectorAll("input[type='text']"))
         .map(input => input.value)
         .map(value => Array.from(value.matchAll("https://(?:www.)?retroachievements.org/achievement/([0-9]+)")))
         .flatMap(x => x.map(([_, id]) => id));
+
+    const scores = {};
 
     for (const achievement of achievements) {
         const data = await getAchievementUnlocks(auth, {
@@ -108,12 +108,17 @@ document.getElementById("verify").addEventListener("click", async () => {
             n -= 500;
         }
 
-        if (gamblers.length == 0) {
-            gamblers.push(...unlocks.map(u => u.user));
-        } else {
-            gamblers = gamblers.filter(user => unlocks.map(u => u.user).includes(user));
+        for (const user of unlocks.map(u => u.user)) {
+            if (!scores.hasOwnProperty(user)) {
+                scores[user] = 1;
+            } else {
+                scores[user] += 1;
+            }
         }
     }
+
+    const gamblers = Object.entries(scores).filter(p => p[1] >= 3).map(p => p[0]);
+    spinner.parentElement.querySelector("h1").innerHTML = `Gamblers (${gamblers.length})`;
 
     for (const user of gamblers) {
         const div = document.createElement("div");
